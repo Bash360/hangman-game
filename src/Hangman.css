@@ -47,12 +47,22 @@
 }
 
 .Hangman #reset {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  ;
   background: #ff3333;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 0 6px #B34848;
-  width: 70px;
+  width: auto;
+}
+
+.Hangman #reset:hover {
+  background: #876868;
+  box-shadow: 0 6px #99 6868;
 }
 
 .Hangman button:hover {
