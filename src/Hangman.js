@@ -15,15 +15,17 @@ class Hangman extends Component {
     maxWrong: 6,
     images: [img0, img1, img2, img3, img4, img5, img6]
   };
+  static counter = 0;
 
   constructor(props) {
     super(props);
-    this.state = { nWrong: 0, guessed: new Set(), answer: randomWord() };
+    this.state = { nWrong: 0, guessed: new Set(), answer: randomWord()};
     this.handleGuess = this.handleGuess.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
   handleReset() { 
-    this.setState({ nWrong:0,guessed:new Set(),answer:randomWord()});
+    this.setState({ nWrong: 0, guessed: new Set(), answer: randomWord() });
+    Hangman.counter = 0;
   }
 
   /** guessedWord: show current-state of word:
@@ -68,6 +70,7 @@ class Hangman extends Component {
 
   /** render: render game */
   render() {
+    Hangman.counter++;
     let { random,letter}=this.getHint();
     let isGameOver = this.state.nWrong >= this.props.maxWrong;
     let isWinner = this.guessedWord().join("") === this.state.answer;
@@ -79,7 +82,7 @@ class Hangman extends Component {
       <div className='Hangman'>
         <h1>Hangman</h1>
         <img src={this.props.images[this.state.nWrong]} alt={altText} />
-        <p>Word has {`"${letter}" at position: ${random+1}`}</p>
+        {Hangman.counter<=1&&<p>Word has {`"${letter}" at position: ${random + 1}`}</p>}
         <p>Number of wrong guesses {this.state.nWrong}</p>
         <p>Number of chances left {this.props.maxWrong-this.state.nWrong}</p>
         <p className='Hangman-word'>{!isGameOver?this.guessedWord():this.state.answer}</p>
