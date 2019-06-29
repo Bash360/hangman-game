@@ -74,7 +74,7 @@ class Hangman extends Component {
         <p className='Hangman-word'>{!isGameOver?this.guessedWord():this.state.answer}</p>
         <p className='Hangman-btns'>{ !isGameOver? this.generateButtons() : `You L ose`}
         </p>
-        <button onClick={this.handleReset}>Reset?</button>
+        <button id="reset" onClick={this.handleReset}>Reset?</button>
       </div>
     );
   }
